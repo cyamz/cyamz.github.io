@@ -7,45 +7,12 @@ const pageDescription = 'KnowWeft 把知识树、场景与时间线放进同一�
 ---
 
 <SiteLayout title={pageTitle} description={pageDescription} theme="knowweft">
-  <section class="hero" aria-labelledby="knowweft-title">
-    <div class="weave-lines" aria-hidden="true">
-      <i></i><i></i><i></i><b></b><b></b>
-    </div>
-    <div class="container hero-grid">
-      <div class="hero-copy">
-        <img class="brand-lockup" src="/brand/knowweft-dark.svg" width="120" height="85" alt="KnowWeft 知织" />
-        <p class="eyebrow">知识视频与课件工作台</p>
-        <h1 id="knowweft-title">知识，<br />先有<em>结构</em>，<br />再有画面。</h1>
-        <p class="hero-lead">从知识树开始组织想法，把文字、媒体、镜头与字幕编进场景，最终导出视频或原生可编辑的 PPTX。</p>
-        <div class="hero-actions">
-          <a class="button primary" href="https://github.com/cyamz/KnowWeft/releases/latest" target="_blank" rel="noreferrer">下载最新版本 <span aria-hidden="true">↗</span></a>
-          <a class="text-link" href="#weave-demo">看看知识如何成片 <span aria-hidden="true">↓</span></a>
-        </div>
-        <p class="platform-note">Windows 安装版与便携版 · Linux AppImage 与 deb</p>
-      </div>
-      <div class="hero-stage" aria-label="知识线条交织成形的三维视觉">
-        <Scene variant="knowweft" />
-        <div class="stage-note"><span>KNOWLEDGE</span><span>SCENE</span><span>TIME</span></div>
-      </div>
-    </div>
-  </section>
-
-  <section class="manifesto">
-    <div class="container manifesto-grid">
-      <p class="eyebrow">一条完整的创作路径</p>
-      <div>
-        <h2>想法不再散落在大纲、幻灯片和剪辑软件之间。</h2>
-        <p>KnowWeft 用同一个工程承接结构、画面和节奏。每次调整都仍然是内容本身，而不是一张失去编辑能力的截图。</p>
-      </div>
-    </div>
-  </section>
-
   <section id="weave-demo" class="demo-section" aria-labelledby="demo-title">
     <div class="container">
       <div class="section-heading demo-heading">
         <div>
           <p class="eyebrow">浏览器交互演示</p>
-          <h2 id="demo-title">从节点到画面，只隔着一次编排。</h2>
+          <h1 id="demo-title">KnowWeft 知织<br />从节点到画面。</h1>
         </div>
         <p>选择知识节点，或拖动时间线，观察内容在创作路径中的位置。此处为宣传页演示，实际编辑在桌面应用中完成。</p>
       </div>
@@ -98,6 +65,40 @@ const pageDescription = 'KnowWeft 把知识树、场景与时间线放进同一�
       </div>
     </div>
   </section>
+  <section class="hero" aria-labelledby="knowweft-title">
+    <div class="weave-lines" aria-hidden="true">
+      <i></i><i></i><i></i><b></b><b></b>
+    </div>
+    <div class="container hero-grid">
+      <div class="hero-copy">
+        <img class="brand-lockup" src="/brand/knowweft-dark.svg" width="120" height="85" alt="KnowWeft 知织" />
+        <p class="eyebrow">知识视频与课件工作台</p>
+        <h2 id="knowweft-title">知识，<br />先有<em>结构</em>，<br />再有画面。</h2>
+        <p class="hero-lead">从知识树开始组织想法，把文字、媒体、镜头与字幕编进场景，最终导出视频或原生可编辑的 PPTX。</p>
+        <div class="hero-actions">
+          <a class="button primary" href="https://github.com/cyamz/KnowWeft/releases/latest" target="_blank" rel="noreferrer">下载最新版本 <span aria-hidden="true">↗</span></a>
+          <a class="text-link" href="#weave-demo">体验知识如何成片 <span aria-hidden="true">↑</span></a>
+        </div>
+        <p class="platform-note">Windows 安装版与便携版 · Linux AppImage 与 deb</p>
+      </div>
+      <div class="hero-stage" aria-label="知识线条交织成形的三维视觉">
+        <Scene variant="knowweft" />
+        <div class="stage-note"><span>KNOWLEDGE</span><span>SCENE</span><span>TIME</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="manifesto">
+    <div class="container manifesto-grid">
+      <p class="eyebrow">一条完整的创作路径</p>
+      <div>
+        <h2>想法不再散落在大纲、幻灯片和剪辑软件之间。</h2>
+        <p>KnowWeft 用同一个工程承接结构、画面和节奏。每次调整都仍然是内容本身，而不是一张失去编辑能力的截图。</p>
+      </div>
+    </div>
+  </section>
+
+
 
   <section class="native-section" aria-labelledby="native-title">
     <div class="container native-grid">
@@ -170,8 +171,8 @@ const pageDescription = 'KnowWeft 把知识树、场景与时间线放进同一�
   .hero-copy { max-width: 690px; position: relative; z-index: 2; }
   .brand-lockup { width: 120px; height: auto; margin-bottom: 2.4rem; }
   .hero .eyebrow { color: #73cfc4; }
-  .hero h1 { margin: .9rem 0 1.8rem; font-size: clamp(3.4rem, 6.3vw, 7.6rem); line-height: 1.06; letter-spacing: -.045em; font-weight: 650; }
-  .hero h1 em { color: #73cfc4; font-style: normal; font-weight: 500; }
+  .hero h2 { margin: .9rem 0 1.8rem; font-size: clamp(3.4rem, 6.3vw, 7.6rem); line-height: 1.06; letter-spacing: -.045em; font-weight: 650; }
+  .hero h2 em { color: #73cfc4; font-style: normal; font-weight: 500; }
   .hero-lead { max-width: 650px; color: #bac6cd; font-size: clamp(1rem, 1.4vw, 1.28rem); line-height: 1.8; }
   .hero-actions { display: flex; align-items: center; gap: 1.75rem; margin-top: 2.4rem; flex-wrap: wrap; }
   .hero :global(.button.primary), .download-section :global(.button.primary) { background: #d85a30; color: white; border-color: #d85a30; }
@@ -193,8 +194,8 @@ const pageDescription = 'KnowWeft 把知识树、场景与时间线放进同一�
   .demo-section { padding: 8rem 0; color: #edf4f5; background: #132332; }
   .demo-heading { display: grid; grid-template-columns: 1.35fr .65fr; gap: 4rem; align-items: end; margin-bottom: 3rem; }
   .demo-heading .eyebrow { color: #73cfc4; }
-  .demo-heading h2, .capabilities h2 { margin: .75rem 0 0; font-size: clamp(2.4rem, 4.4vw, 5rem); line-height: 1.05; letter-spacing: -.05em; font-weight: 580; }
-  .demo-heading > p { color: #96a8b2; line-height: 1.75; }
+  .demo-heading h1, .capabilities h2 { margin: .75rem 0 0; font-size: clamp(2.4rem, 4.4vw, 5rem); line-height: 1.05; letter-spacing: -.05em; font-weight: 580; }
+  .demo-heading > p { color: #96a8b2; font-size: 1rem; line-height: 1.75; }
   .workbench { --progress: 18%; overflow: hidden; display: grid; grid-template-columns: 290px 1fr; min-height: 650px; border: 1px solid rgba(255,255,255,.12); background: #0d1924; box-shadow: 0 40px 100px rgba(0,0,0,.35); }
   .knowledge-tree { padding: 1.4rem 1rem; border-right: 1px solid rgba(255,255,255,.09); }
   .panel-title, .editor-bar, .timeline-meta { display: flex; align-items: center; justify-content: space-between; }
@@ -241,7 +242,7 @@ const pageDescription = 'KnowWeft 把知识树、场景与时间线放进同一�
   .faq-section { padding: 8rem 0; background:#f5f2e9}.faq-grid{display:grid;grid-template-columns:.6fr 1.4fr;gap:5rem}.faq-grid h2{margin:.6rem 0;font-size:clamp(2.4rem,4vw,4.4rem);letter-spacing:-.05em}.faq-list{border-top:1px solid #cbc5b8}.faq-list details{border-bottom:1px solid #cbc5b8}.faq-list summary{display:flex;justify-content:space-between;gap:1rem;padding:1.6rem 0;cursor:pointer;font-size:1.05rem;list-style:none}.faq-list summary::-webkit-details-marker{display:none}.faq-list details[open] summary span{transform:rotate(45deg)}.faq-list summary span{color:#1f9186;transition:transform .2s}.faq-list details p{margin:0 0 1.7rem;max-width:720px;color:#68757c;line-height:1.75}
   .sr-only { position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0; }
   @media (max-width: 900px) {
-    .hero-grid { grid-template-columns: 1fr; padding-top: 8rem; }.hero-stage { position:absolute;right:-32%;top:9rem;width:75vw;height:580px;opacity:.55}.hero-copy{padding-bottom:4rem}.hero h1{font-size:clamp(3.2rem,12vw,6.5rem)}
+    .hero-grid { grid-template-columns: 1fr; padding-top: 8rem; }.hero-stage { position:absolute;right:-32%;top:9rem;width:75vw;height:580px;opacity:.55}.hero-copy{padding-bottom:4rem}.hero h2{font-size:clamp(3.2rem,12vw,6.5rem)}
     .manifesto-grid,.demo-heading,.native-grid,.capabilities-head,.faq-grid{grid-template-columns:1fr;gap:2rem}.manifesto div>p{margin-left:0}.workbench{grid-template-columns:230px 1fr}.native-grid{gap:4rem}.capabilities-head{margin-bottom:3rem}
   }
   @media (max-width: 650px) {
@@ -249,4 +250,5 @@ const pageDescription = 'KnowWeft 把知识树、场景与时间线放进同一�
     .manifesto,.demo-section,.native-section,.capabilities,.faq-section,.download-section{padding:5.5rem 0}.manifesto h2{font-size:2.75rem}.workbench{display:block;min-height:0}.knowledge-tree{border-right:0;border-bottom:1px solid rgba(255,255,255,.09)}.tree-branch{display:grid;grid-template-columns:repeat(3,1fr);padding-left:0;gap:.35rem}.tree-branch::before{display:none}.tree-node{display:block;padding:.7rem .5rem}.tree-node .node-dot{display:block;margin-bottom:.5rem}.tree-node small{display:none}.scene-canvas{min-height:360px;padding:2rem 1.2rem}.scene-copy h3{font-size:2rem}.timeline-panel{padding:.75rem}.tracks{grid-template-columns:34px 1fr 1fr 1fr}.range-label input{width:calc(100% - 34px);margin-left:34px}.capability-list article{grid-template-columns:1fr;gap:.6rem;padding:1.6rem 0}.capability-list p{max-width:540px}.product-frame{transform:none}.download-mark{right:-30%;width:80vw}.download-inner h2{font-size:3.6rem}
   }
   @media (prefers-reduced-motion: reduce) { .tree-node, .faq-list summary span { transition: none; } }
+  #weave-demo { padding-top: 3rem; }
 </style>
