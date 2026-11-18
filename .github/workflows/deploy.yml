@@ -12,7 +12,7 @@ permissions:
 
 concurrency:
   group: pages
-  cancel-in-progress: false
+  cancel-in-progress: true
 
 jobs:
   build:
@@ -20,12 +20,25 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v7
-      - name: Install, build, and upload site
-        uses: withastro/action@v6
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
         with:
           node-version: 22
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm check
+      - run: pnpm build
         env:
           SITE_URL: 'https://cyamz.top'
+      - name: Install pinned Tessera Web
+        run: node scripts/install-tessera-web.mjs --manifest src/data/tessera-web-release.json --dist dist
+      - run: pnpm test
+      - run: pnpm exec playwright install --with-deps chromium
+      - name: Smoke final site
+        run: node scripts/probe-tessera-web.mjs --dist dist
+      - uses: actions/upload-pages-artifact@v4
+        with:
+          path: dist
   deploy:
     needs: build
     runs-on: ubuntu-latest
@@ -33,6 +46,16 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
+      - uses: actions/checkout@v7
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm exec playwright install --with-deps chromium
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v5
+      - name: Probe online version
+        run: node scripts/probe-tessera-web.mjs --base-url https://cyamz.top

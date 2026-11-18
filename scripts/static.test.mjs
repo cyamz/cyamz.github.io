@@ -5,7 +5,7 @@ import { resolve } from 'node:path';
 
 // 对构建产物检查真实路径，防止静态部署后才发现资源丢失。
 const output = resolve('dist');
-for (const route of ['index.html', 'knowweft/index.html', 'tessera/index.html']) {
+for (const route of ['index.html', 'knowweft/index.html', 'tessera/index.html', 'tessera/online/index.html']) {
   test(`${route} 可独立访问且本地资源完整`, async () => {
     const html = await readFile(resolve(output, route), 'utf8');
     assert.match(html, /<html[^>]*lang="zh-CN"/);

@@ -13,41 +13,15 @@ const issuesUrl = 'https://github.com/cyamz/Tessera/issues';
 >
   <section class="try-section container" id="try-it" aria-labelledby="try-title">
     <div class="try-intro">
-      <p class="eyebrow">Live browser demo</p>
-      <h1 id="try-title">Tessera 千机<br />在线小工具。</h1>
-      <p>这两个体验直接在当前页面运行，不上传输入内容。桌面版包含更完整的单位分类和文本能力。</p>
+      <p class="eyebrow">Same source. In your browser.</p>
+      <h1 id="try-title">Tessera 千机<br />在线工具工作台。</h1>
+      <p>与桌面版共用 Flutter 源码，计算、换算等已适配工具直接在浏览器中运行。本机系统功能请使用桌面版。</p>
     </div>
-
     <div class="demo-stack">
-      <form class="mini-tool converter" id="converter-form">
-        <div class="mini-tool-head"><span>01</span><div><h3>长度换算</h3><p>Length converter</p></div></div>
-        <div class="convert-grid">
-          <label>数值<input name="value" inputmode="decimal" value="1" autocomplete="off" /></label>
-          <label>从<select name="from" aria-label="原单位"><option value="m">米 m</option><option value="cm">厘米 cm</option><option value="km">千米 km</option><option value="in">英寸 in</option><option value="ft">英尺 ft</option><option value="mi">英里 mi</option></select></label>
-          <button type="button" class="swap-button" data-swap aria-label="交换单位">⇄</button>
-          <label>到<select name="to" aria-label="目标单位"><option value="cm">厘米 cm</option><option value="m">米 m</option><option value="km">千米 km</option><option value="in">英寸 in</option><option value="ft">英尺 ft</option><option value="mi">英里 mi</option></select></label>
-        </div>
-        <div class="tool-result" aria-live="polite"><small>换算结果</small><output id="convert-result">100</output><span id="convert-unit">cm</span></div>
-        <p class="input-error" id="convert-error" role="status" hidden>请输入有效数值。</p>
-      </form>
-
-      <div class="mini-tool text-tool">
-        <div class="mini-tool-head"><span>02</span><div><h3>文本整理</h3><p>Text cleaner</p></div></div>
-        <label class="sr-only" for="text-input">要整理的文本</label>
-        <textarea id="text-input" rows="6">Tessera 把常用工具，
-
-
-装进同一个工作台。</textarea>
-        <div class="text-meta" aria-live="polite">
-          <span><b id="text-characters">0</b> 字符</span>
-          <span><b id="text-lines">0</b> 行</span>
-          <span><b id="text-words">0</b> 词组</span>
-          <button type="button" id="clean-text">整理空行与行尾空格</button>
-        </div>
-      </div>
+      <a class="button button-primary" href="/tessera/online/">进入在线版 →</a>
+      <p>浏览器可用范围与发布状态在在线版页面查看。</p>
     </div>
   </section>
-
   <section class="workbench" aria-labelledby="workbench-title">
     <div class="container">
       <div class="section-head">
@@ -242,7 +216,7 @@ const issuesUrl = 'https://github.com/cyamz/Tessera/issues';
 </SiteLayout>
 
 <script>
-  import { convertLength, inspectText, normalizeText } from '../scripts/tessera-tools.mjs';
+
 
   const tabs = [...document.querySelectorAll<HTMLButtonElement>('[data-tool-tab]')];
   const panels = [...document.querySelectorAll<HTMLElement>('[data-tool-panel]')];
@@ -269,54 +243,6 @@ const issuesUrl = 'https://github.com/cyamz/Tessera/issues';
     });
   });
 
-  const converter = document.querySelector<HTMLFormElement>('#converter-form');
-  if (converter) {
-    const value = converter.elements.namedItem('value') as HTMLInputElement;
-    const from = converter.elements.namedItem('from') as HTMLSelectElement;
-    const to = converter.elements.namedItem('to') as HTMLSelectElement;
-    const result = converter.querySelector<HTMLOutputElement>('#convert-result');
-    const unit = converter.querySelector<HTMLElement>('#convert-unit');
-    const error = converter.querySelector<HTMLElement>('#convert-error');
-
-    converter.addEventListener('submit', (event) => event.preventDefault());
-
-    const updateConversion = () => {
-      const converted = convertLength(value.value, from.value, to.value);
-      const valid = converted !== null;
-      value.setAttribute('aria-invalid', String(!valid));
-      if (result) result.value = valid ? converted : '—';
-      if (unit) unit.textContent = to.value;
-      if (error) error.hidden = valid;
-    };
-
-    converter.addEventListener('input', updateConversion);
-    converter.querySelector<HTMLButtonElement>('[data-swap]')?.addEventListener('click', () => {
-      [from.value, to.value] = [to.value, from.value];
-      updateConversion();
-    });
-  }
-
-  const textInput = document.querySelector<HTMLTextAreaElement>('#text-input');
-  const characters = document.querySelector<HTMLElement>('#text-characters');
-  const lines = document.querySelector<HTMLElement>('#text-lines');
-  const words = document.querySelector<HTMLElement>('#text-words');
-
-  const updateTextStats = () => {
-    if (!textInput) return;
-    const stats = inspectText(textInput.value);
-    if (characters) characters.textContent = String(stats.characters);
-    if (lines) lines.textContent = String(stats.lines);
-    if (words) words.textContent = String(stats.words);
-  };
-
-  textInput?.addEventListener('input', updateTextStats);
-  document.querySelector<HTMLButtonElement>('#clean-text')?.addEventListener('click', () => {
-    if (!textInput) return;
-    textInput.value = normalizeText(textInput.value);
-    updateTextStats();
-    textInput.focus();
-  });
-  updateTextStats();
 </script>
 
 <style>

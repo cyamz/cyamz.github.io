@@ -1,0 +1,37 @@
+---
+import SiteLayout from '../../layouts/SiteLayout.astro';
+import raw from '../../data/tessera-web-release.json';
+const release = raw as {tag:string;sourceSha:string;basePath:string}|null;
+---
+<SiteLayout title="Tessera 千机｜在线使用" description="直接在浏览器中使用与桌面版同源的 Tessera 工具，按浏览器能力开放功能。" theme="tessera">
+  <main class="online">
+    <header><a href="/tessera/">← 千机介绍</a><h1>Tessera 在线版</h1>
+      <p>与桌面版共用 Flutter 源码。浏览器不支持的本机功能不会开放。</p>
+    </header>
+    {release ? <>
+      <nav aria-label="应用操作"><span>版本 {release.tag}</span><a href="/tessera/app/" target="_blank" rel="noopener">直接打开</a><button id="retry" type="button">重新加载</button><button id="fullscreen" type="button">全屏使用</button></nav>
+      <p id="app-status" role="status">正在加载 Tessera…</p>
+      <iframe id="tessera-frame" title="Tessera 工具工作台" src="about:blank" allow="clipboard-read; clipboard-write; fullscreen" allowfullscreen loading="eager"></iframe>
+    </> : <p role="status">在线版发布链已接入，首个 Web 版本尚未发布。<a href="https://github.com/cyamz/Tessera/releases/latest">下载桌面版</a></p>}
+  </main>
+</SiteLayout>
+<script>
+  import raw from '../../data/tessera-web-release.json';
+  const release = raw as {tag:string;sourceSha:string;basePath:string}|null;
+  import { attachOnline } from '../../scripts/tessera-online.mjs';
+  const frame = document.querySelector<HTMLIFrameElement>('#tessera-frame');
+  const status = document.querySelector<HTMLElement>('#app-status');
+  const retry = document.querySelector<HTMLButtonElement>('#retry');
+  if (release && frame && status && retry) attachOnline({frame, status, retry, release});
+  document.querySelector('#fullscreen')?.addEventListener('click', () => {
+    frame?.requestFullscreen?.().catch(() => {if (status) status.textContent = '浏览器未允许全屏，可使用“直接打开”。';});
+  });
+</script>
+<style>
+  :global(body[data-theme='tessera']){background:#f6f5fb;color:#191927}
+  .online{max-width:1600px;margin:auto;padding:110px 24px 32px;color:#191927;min-height:100vh}
+  h1{font-size:clamp(28px,4vw,44px);margin:18px 0 12px}p{line-height:1.7}
+  nav{display:flex;flex-wrap:wrap;gap:20px;align-items:center;margin-top:24px}a{color:#533afd}button{cursor:pointer;border:1px solid #b9b4d3;background:white;border-radius:8px;padding:9px 16px;color:#34246b}
+  iframe{width:100%;height:calc(100dvh - 270px);min-height:500px;border:1px solid #ddd9ed;border-radius:12px;background:#fff}
+  @media(max-width:600px){.online{padding:90px 12px 16px}iframe{min-height:520px}nav{gap:12px}}
+</style>

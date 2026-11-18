@@ -83,3 +83,10 @@ pnpm build
 ## 素材来源与许可证
 KnowWeft 的标志和示例画面来自本机 `knowweft-source/media/`；Tessera 标志来自 `tessera-source/artifacts/brandkit/tessera/assets/`。页面中的其他图形由 SVG/CSS/Three.js 程序绘制。
 网站为个人项目，未指定开源许可证；各产品品牌和第三方依赖仍适用各自授权。
+# Tessera 在线版接入
+
+`/tessera/online/` 是 Flutter 应用外壳，`/tessera/app/` 是稳定入口。网站只下载 `cyamz/Tessera` 指定 Release 的 Web ZIP，不复制 Flutter 业务源码。
+
+`src/data/tessera-web-release.json` 是持久版本指针；null 表示首个正式 Web 包尚未发布，此时显示待发布说明。源码仓发布成功后用独立 `WEBSITE_SYNC_TOKEN` 更新清单并触发本仓构建。构建顺序为 Astro check/build → 下载并校验 ZIP/包内元信息 → 合入 dist → 整站测试/真实 iframe ready → 单一 Pages 部署 → 线上探针。
+
+正常发布不手工改清单或提交 dist。失败可重跑 `Deploy to GitHub Pages`；回滚用 Actions 的 `Roll back Tessera Web`，选择包含 Web 附件的既有正式 tag。部署使用同一个 Pages 并发组，较新提交取消过期部署。首包发布前不能把在线页可访问等同于工具已上线。

@@ -13,11 +13,14 @@
   },
   "dependencies": {
     "astro": "5.18.2",
-    "three": "0.187.0"
+    "three": "0.187.0",
+    "yauzl": "3.2.0"
   },
   "devDependencies": {
     "@astrojs/check": "0.9.12",
     "@types/three": "0.187.0",
-    "typescript": "5.9.3"
+    "playwright": "1.49.1",
+    "typescript": "5.9.3",
+    "yazl": "3.3.1"
   }
 }
